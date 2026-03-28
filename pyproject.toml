@@ -1,0 +1,31 @@
+[project]
+name = "indobert-xai-sentiment"
+version = "0.1.0"
+description = "Explainable Indonesian sentiment analysis using IndoBERT with Attention, LIME, and Integrated Gradients"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.0.0",
+    "transformers>=4.35.0",
+    "datasets>=2.14.0",
+    "tokenizers>=0.14.0",
+    "lime>=0.2.0.1",
+    "captum>=0.6.0",
+    "scikit-learn>=1.3.0",
+    "pandas>=2.0.0",
+    "numpy>=1.24.0",
+    "matplotlib>=3.7.0",
+    "seaborn>=0.12.0",
+    "tqdm>=4.65.0",
+    "evaluate>=0.4.0",
+    "accelerate>=0.24.0",
+]
+
+[project.scripts]
+run-pipeline = "run_pipeline:main"
+
+[tool.uv]
+dev-dependencies = [
+    "jupyter>=1.0.0",
+    "ipykernel>=6.25.0",
+]
