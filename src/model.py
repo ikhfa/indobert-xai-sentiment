@@ -91,6 +91,12 @@ def load_best_model(
     if checkpoint_dir is None:
         checkpoint_dir = str(config.CHECKPOINTS_DIR / "best")
 
+    if not Path(checkpoint_dir).exists():
+        raise FileNotFoundError(
+            f"Checkpoint not found at '{checkpoint_dir}'. "
+            "Run training first (stage 'train') to generate the checkpoint."
+        )
+
     model = AutoModelForSequenceClassification.from_pretrained(checkpoint_dir)
     tokenizer = AutoTokenizer.from_pretrained(checkpoint_dir)
     model.to(config.DEVICE)
