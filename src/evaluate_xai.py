@@ -474,7 +474,7 @@ def main() -> None:
 
     # Load test texts
     from datasets import load_dataset
-    dataset = load_dataset(config.DATASET_NAME, config.DATASET_SUBSET, trust_remote_code=True)
+    dataset = load_dataset(config.DATASET_NAME, config.DATASET_SUBSET)
     test_texts = [str(ex["text"]) for ex in dataset["test"]]
 
     print(f"Evaluating on {min(50, len(test_texts))} test samples...")
