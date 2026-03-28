@@ -470,7 +470,7 @@ def evaluate_all_methods(
 def main() -> None:
     """Load model, run evaluation on test set sample, save results."""
     print(f"Device: {config.DEVICE}")
-    model, tokenizer = load_best_model()
+    model, tokenizer = load_best_model(attn_implementation="eager")
 
     # Load test texts
     from datasets import load_dataset

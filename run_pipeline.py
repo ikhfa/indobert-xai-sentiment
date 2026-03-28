@@ -54,7 +54,7 @@ def run_xai():
     from src.dataset import build_datasets
     import config
 
-    model, tokenizer = load_best_model()
+    model, tokenizer = load_best_model(attn_implementation="eager")
     _, _, test_ds = build_datasets(tokenizer)
     df, jaccard = evaluate_all_methods(model, tokenizer, test_ds.texts)
 

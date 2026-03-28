@@ -74,6 +74,7 @@ def build_model(
 
 def load_best_model(
     checkpoint_dir: Optional[str] = None,
+    attn_implementation: Optional[str] = None,
 ) -> Tuple[PreTrainedModel, PreTrainedTokenizerBase]:
     """
     Load the best saved checkpoint and its tokenizer.
@@ -82,6 +83,9 @@ def load_best_model(
     ----------
     checkpoint_dir : str, optional
         Path to checkpoint directory. Defaults to ``config.CHECKPOINTS_DIR / 'best'``.
+    attn_implementation : str, optional
+        Attention implementation to use (e.g. ``"eager"`` for full attention
+        weights).  Passed through to ``from_pretrained``.
 
     Returns
     -------
@@ -97,7 +101,10 @@ def load_best_model(
             "Run training first (stage 'train') to generate the checkpoint."
         )
 
-    model = AutoModelForSequenceClassification.from_pretrained(checkpoint_dir)
+    kwargs = {}
+    if attn_implementation is not None:
+        kwargs["attn_implementation"] = attn_implementation
+    model = AutoModelForSequenceClassification.from_pretrained(checkpoint_dir, **kwargs)
     tokenizer = AutoTokenizer.from_pretrained(checkpoint_dir)
     model.to(config.DEVICE)
     model.eval()

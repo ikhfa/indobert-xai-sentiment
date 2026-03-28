@@ -327,7 +327,7 @@ def get_top_k_tokens(
 if __name__ == "__main__":
     from src.model import load_best_model
 
-    model, tokenizer = load_best_model()
+    model, tokenizer = load_best_model(attn_implementation="eager")
     text = "Aplikasi ini sangat bagus dan mudah digunakan! :)"
 
     print("Extracting attention weights...")

@@ -336,5 +336,5 @@ def generate_report(
 
 if __name__ == "__main__":
     print(f"Device: {config.DEVICE}")
-    model, tokenizer = load_best_model()
+    model, tokenizer = load_best_model(attn_implementation="eager")
     generate_report(model, tokenizer)
