@@ -56,7 +56,7 @@ def run_xai():
 
     model, tokenizer = load_best_model()
     _, _, test_ds = build_datasets(tokenizer)
-    df, jaccard = evaluate_all_methods(model, tokenizer, test_ds)
+    df, jaccard = evaluate_all_methods(model, tokenizer, test_ds.texts)
 
     print("\nXAI Evaluation Results:")
     print(df.to_string())

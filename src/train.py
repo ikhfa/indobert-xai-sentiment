@@ -92,6 +92,7 @@ def compute_metrics(eval_pred) -> dict:
 
 def train() -> None:
     """Run full fine-tuning of IndoBERT on IndoNLU SmSA."""
+    os.environ["TENSORBOARD_LOGGING_DIR"] = str(config.OUTPUTS_DIR / "logs")
     set_seed()
     print(f"Device: {config.DEVICE}")
     print(f"Loading tokenizer: {config.MODEL_NAME}")
@@ -126,7 +127,6 @@ def train() -> None:
         metric_for_best_model="macro_f1",
         greater_is_better=True,
         logging_steps=50,
-        logging_dir=str(config.OUTPUTS_DIR / "logs"),
         seed=config.RANDOM_SEED,
         fp16=torch.cuda.is_available(),
         report_to="none",
