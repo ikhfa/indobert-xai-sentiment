@@ -48,6 +48,22 @@ LABEL_MAP: dict = {0: "negative", 1: "neutral", 2: "positive"}
 LABEL_NAMES: list = ["negative", "neutral", "positive"]
 
 # ---------------------------------------------------------------------------
+# Baseline Models
+# ---------------------------------------------------------------------------
+MBERT_MODEL_NAME: str = "bert-base-multilingual-cased"
+XLMR_MODEL_NAME: str = "xlm-roberta-base"
+
+# BiLSTM hyperparameters
+BILSTM_EMBEDDING_DIM: int = 300
+BILSTM_HIDDEN_DIM: int = 256
+BILSTM_NUM_LAYERS: int = 2
+BILSTM_DROPOUT: float = 0.3
+BILSTM_LR: float = 1e-3
+BILSTM_BATCH_SIZE: int = 64
+BILSTM_EPOCHS: int = 10
+FASTTEXT_PATH: str = str(DATA_DIR / "cc.id.300.vec")
+
+# ---------------------------------------------------------------------------
 # XAI
 # ---------------------------------------------------------------------------
 LIME_NUM_FEATURES: int = 15

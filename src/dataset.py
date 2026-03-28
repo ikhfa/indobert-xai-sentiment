@@ -141,15 +141,16 @@ class SmSADataset(Dataset):
         return len(self.labels)
 
     def __getitem__(self, idx: int) -> Dict[str, torch.Tensor]:
-        return {
+        item = {
             "input_ids": self._encodings["input_ids"][idx],
             "attention_mask": self._encodings["attention_mask"][idx],
-            "token_type_ids": self._encodings.get(
-                "token_type_ids",
-                torch.zeros_like(self._encodings["input_ids"][idx]),
-            )[idx],
             "labels": torch.tensor(self.labels[idx], dtype=torch.long),
         }
+        # Only include token_type_ids if the tokenizer produced them
+        # (BERT-based models use them; XLM-RoBERTa does not)
+        if "token_type_ids" in self._encodings:
+            item["token_type_ids"] = self._encodings["token_type_ids"][idx]
+        return item
 
 
 # ---------------------------------------------------------------------------
