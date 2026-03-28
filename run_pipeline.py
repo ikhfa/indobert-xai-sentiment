@@ -69,9 +69,11 @@ def run_viz():
     print("=" * 60 + "\n")
 
     from src.visualize import generate_report
+    from src.model import load_best_model
     import config
 
-    generate_report()
+    model, tokenizer = load_best_model(attn_implementation="eager")
+    generate_report(model, tokenizer)
     print(f"\nPlots saved to {config.PLOTS_DIR}")
 
 
