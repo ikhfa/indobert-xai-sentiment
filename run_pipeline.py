@@ -49,6 +49,7 @@ def run_xai():
     print("STAGE 2/3: Evaluating XAI faithfulness metrics")
     print("=" * 60 + "\n")
 
+    import json
     from src.evaluate_xai import evaluate_all_methods
     from src.model import load_best_model
     from src.dataset import build_datasets
@@ -60,6 +61,13 @@ def run_xai():
 
     print("\nXAI Evaluation Results:")
     print(df.to_string())
+
+    # Save results
+    df.to_csv(config.RESULTS_DIR / "xai_evaluation.csv")
+
+    with open(config.RESULTS_DIR / "jaccard_overlap.json", "w") as f:
+        json.dump(jaccard, f, indent=2)
+
     print(f"\nResults saved to {config.RESULTS_DIR}")
 
 
