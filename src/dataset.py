@@ -90,7 +90,7 @@ def load_smsa_dataset() -> DatasetDict:
     DatasetDict
         Keys: 'train', 'validation', 'test'.
     """
-    dataset = load_dataset(config.DATASET_NAME, config.DATASET_SUBSET)
+    dataset = load_dataset(config.DATASET_NAME, config.DATASET_SUBSET, trust_remote_code=True)
     return dataset
 
 
