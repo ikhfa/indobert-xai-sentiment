@@ -120,7 +120,7 @@ def train() -> None:
         learning_rate=config.LEARNING_RATE,
         weight_decay=config.WEIGHT_DECAY,
         warmup_steps=warmup_steps,
-        evaluation_strategy="epoch",
+        eval_strategy="epoch",
         save_strategy="epoch",
         load_best_model_at_end=True,
         metric_for_best_model="macro_f1",
